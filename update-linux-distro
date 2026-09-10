@@ -1,1 +1,47 @@
-t
+before updating linux distro - we need to check upgrade manager promt in 
+
+sudo nano /etc/update-manager/release-upgrades
+
+change it to lts or normal to get update (if its never then we cant update)
+
+-----------------------------------------------------------------------------------
+
+To update your system from Ubuntu 22.04.5 LTS to the latest version, you should first upgrade to Ubuntu 24.04 LTS, which is the required stepping stone before moving to Ubuntu 26.04 LTS.
+Ubuntu Long-Term Support (LTS) releases are designed to upgrade safely from one LTS version directly to the next consecutive one (e.g., 22.04 → 24.04 → 26.04).
+Follow these sequential steps to perform the upgrade safely.
+## Step 1: Back Up Your Data
+Upgrading an operating system carries inherent risks. Before running any commands, back up all your critical files, documents, and configurations to an external drive or cloud storage.
+## Step 2: Fully Update Your Current System
+Before moving to a new distribution version, your current packages must be completely up to date. Open your terminal and run the following commands:
+
+sudo apt update && sudo apt dist-upgrade -y
+
+Once the updates are complete, remove any unnecessary leftover packages:
+
+sudo apt autoremove -y
+
+## Step 3: Reboot Your Computer
+Apply all the newly installed updates by restarting your system:
+
+sudo reboot
+
+## Step 4: Upgrade to Ubuntu 24.04 LTS First
+Once your system boots back up, open the terminal and launch the distribution upgrade tool:
+
+sudo do-release-upgrade
+
+
+* Note: If the tool states that no new release is found but you want to force the upgrade process, you can append the development flag: sudo do-release-upgrade -d.
+* Follow the on-screen prompts. The system will download the new packages, which may take some time depending on your internet connection.
+* Once completed, it will prompt you to restart. Reboot your system.
+
+## Step 5: Upgrade to Ubuntu 26.04 LTS
+After your system successfully reboots into Ubuntu 24.04 LTS, repeat the process to jump to the final version. Open the terminal and run:
+
+sudo apt update && sudo apt dist-upgrade -y
+sudo do-release-upgrade
+
+(Again, use sudo do-release-upgrade -d if 26.04 is newly released and not yet automatically pushed to all users).
+Follow the final prompts to complete the process and restart your machine. You will then be running the latest version!
+Please let me know if you run into any error messages during the update process or if you need help checking your system status after the reboot.
+
